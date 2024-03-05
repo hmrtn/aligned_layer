@@ -101,6 +101,12 @@ func (tg *TaskGenerator) Start(ctx context.Context) error {
 				if err != nil {
 					continue
 				}
+			case 4:
+				proof = generateRisc0Proof()
+				err := tg.SendNewTask(proof, common.Risc0)
+				if err != nil {
+					continue
+				}
 			}
 		}
 
@@ -152,4 +158,13 @@ func generateRandomProof(r *rand.Rand) []byte {
 	badProof := make([]byte, 32)
 	r.Read(badProof)
 	return badProof
+}
+
+func generateRisc0Proof() []byte {
+	proofBytes, err := os.ReadFile("tests/testing_data/risc0.proof")
+	if err != nil {
+		panic("Could not read RISC0 proof file")
+	}
+
+	return proofBytes
 }

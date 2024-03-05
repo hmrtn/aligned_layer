@@ -6,4 +6,5 @@ const (
 	LambdaworksCairo VerifierId = iota
 	GnarkPlonkBls12_381
 	Sp1BabyBearBlake3
+	Risc0
 )
